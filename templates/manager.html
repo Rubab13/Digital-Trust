@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ data.name }}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- MDB icon -->
+    <!-- <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" /> -->
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" /> -->
+    <!-- Google Fonts Roboto -->
+    <!-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" /> -->
+    <!-- MDB -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-profiles.min.css" /> -->
+</head>
+
+<body>
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <!-- <div class="col bg-danger">
+                    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">User</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                        </ol>
+                    </nav>
+                </div> -->
+            </div>
+
+            <div class="row ">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"> -->
+
+                            <img src="{{ url_for('static', path = '/assets/' + data.image_url) }}"
+                                class="rounded-circle img-fluid"
+                                style="box-shadow: 0 0 0.2rem rgba(0,0,0,0.4);width:150px;height:150px">
+
+                            <h5 class="my-3">{{ data.name }}</h5>
+                            <p class="text-muted mb-1">Branh Manager</p>
+                            <p class="text-muted mb-4">{{ data.branch_code }}</p>
+                            <!-- <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-primary">Follow</button>
+                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="card mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <p class="mb-0">https://mdbootstrap.com</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <p class="mb-0">@mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-lg-8">
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.name }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.email }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.phone }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Mobile</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.mobile }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.address }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Date of Birth</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ data.date_of_birth }}</p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link active btn" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">View All Customers</button>
+                                </li>
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile" aria-selected="false">Search Customer</button>
+                                </li>
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-contact-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact" type="button" role="tab"
+                                        aria-controls="pills-contact" aria-selected="false">Delete Customer</button>
+                                </li>
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-fourth-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-fourth" type="button" role="tab"
+                                        aria-controls="pills-fourth" aria-selected="false">Top Customers</button>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+
+                                    {% if customer_data %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-8 offset-md-2">
+                                            <table class="table table-hover table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Index</th>
+                                                        <th scope="col">Account Number</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Age</th>
+                                                        <th scope="col">Account Balance</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for user in customer_data %}
+                                                    <tr>
+                                                        <th scope="row">{{ loop.index }}</th>
+                                                        <td>{{ user.account_number }}</td>
+                                                        <td>{{ user.name }}</td>
+                                                        <td>{{ user.email }}</td>
+                                                        <td>{{ user.age }}</td>
+                                                        <td>{{ user.current_balance }}</td>
+                                                        <!-- <td>
+                                                            
+                                                            <a href="/users/update/{{ user._id }}"
+                                                                class="btn btn-sm btn-primary">Update</a>
+
+                                                            <form action="/users/delete/{{ user._id }}" method="post"
+                                                                style="display: inline;">
+                                                                
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-danger">Delete</button>
+                                                            </form>
+                                                        
+                                                        </td> -->
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <!-- <div class="tab-pane fade mt-5 mb-5" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+
+                                    <div class="row col-12">
+
+                                        <form class="col-12" method="post" action="/search_customer"
+                                            onsubmit="validate()">
+
+                                            <div class="form-group row">
+                                                <label for="search_customer" class="col-sm-3 col-form-label">Search
+                                                    Customer: </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="search_customer"
+                                                        name="search_customer"
+                                                        placeholder="Enter Customer Account Number">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mt-3 ml-4">
+                                                <div class="col-sm-10 d-flex justify-content-start pl-4">
+                                                    <button type="submit" class="btn btn-primary">Search</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                    <div class="row col-12 d-flex justify-content-center">
+                                        
+
+                                    </div>
+
+                                </div> -->
+
+                                <div class="tab-pane fade mt-5 mb-5" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    <div class="row col-12">
+
+                                        <form class="col-12" id="searchForm" onsubmit="searchCustomer(); return false;">
+                                            <div class="form-group row">
+                                                <label for="search_customer" class="col-sm-3 col-form-label">Search
+                                                    Customer:</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="search_customer"
+                                                        name="search_customer"
+                                                        placeholder="Enter Customer Account Number">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mt-3 ml-4">
+                                                <div class="col-sm-10 d-flex justify-content-start pl-4">
+                                                    <button type="submit" class="btn btn-outline-primary">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="row col-12 ml-2 d-flex justify-content-center mt-5 mb-5">
+                                        <div class="col-lg-8">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Account Number</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-num">-</p>
+                                                        </div>
+                                                    </div>
+                                    
+                                                    <hr>
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Full Name</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-name">-</p>
+                                                        </div>
+                                                    </div>
+                                    
+                                                    <hr>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Age</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-age">-</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Email</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-email">-</p>
+                                                        </div>
+                                                    </div>
+                                    
+                                                    <hr>
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Phone</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-phone">-</p>
+                                                        </div>
+                                                    </div>
+                                    
+                                                    <hr>
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Address</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-address">-</p>
+                                                        </div>
+                                                    </div>
+                                    
+                                                    <hr>
+                                    
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <p class="mb-0">Current Balance</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <p class="text-muted mb-0" id="acc-balance">-</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+
+                                <div class="tab-pane fade mt-5 mb-5" id="pills-contact" role="tabpanel"
+                                    aria-labelledby="pills-contact-tab">
+
+                                    {% if customer_data %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-8 offset-md-2">
+                                            <table class="table table-hover  table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Index</th>
+                                                        <th scope="col">Account Number</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Age</th>
+                                                        <th scope="col">Account Balance</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for user in customer_data %}
+                                                    <tr>
+                                                        <th scope="row">{{ loop.index }}</th>
+                                                        <td>{{ user.account_number }}</td>
+                                                        <td>{{ user.name }}</td>
+                                                        <td>{{ user.email }}</td>
+                                                        <td>{{ user.age }}</td>
+                                                        <td>{{ user.current_balance }}</td>
+                                                        <td>
+
+                                                            <!-- <a href="/users/update/{{ user._id }}"
+                                                                class="btn btn-sm btn-primary">Update</a> -->
+
+                                                            <form action="/manager/delete_user/{{ user.account_number }}"
+                                                                method="post" style="display: inline;">
+
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-outline-danger">Delete</button>
+                                                            </form>
+
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <div class="tab-pane fade mt-5 mb-5" id="pills-fourth" role="tabpanel"
+                                    aria-labelledby="pills-fourth-tab">
+
+                                    {% if top_customers %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-8 offset-md-3 d-flex justify-content-center">
+                                            <table class="table table-hover table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Index</th>
+                                                        <th scope="col">Account Number</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Account Balance</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for user in top_customers %}
+                                                    <tr>
+                                                        <th scope="row">{{ loop.index }}</th>
+                                                        <td>{{ user.account_number }}</td>
+                                                        <td>{{ user.name }}</td>
+                                                        <td>{{ user.current_balance }}</td>
+
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="/manager/manager-logout" class="btn btn-primary">Log Out</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        function validate() {
+
+            var account = document.getElementById("search_customer").value;
+
+            if (account.trim() === '') {
+                alert("Please fill out the form.");
+                return false;
+            }
+            return true;
+
+        }
+
+        async function searchCustomer() {
+            const searchValue = document.getElementById("search_customer").value;
+
+            const response = await fetch("/manager/search_customer", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `search_customer=${searchValue}`
+            });
+
+            const data = await response.json();
+
+            console.log(data)
+            console.log(document.getElementById("acc-phone"));
+            document.getElementById("acc-num").innerText = data.account_number;
+            document.getElementById("acc-email").innerText = data.email;
+            document.getElementById("acc-name").innerText = data.name;
+            document.getElementById("acc-age").innerText = data.age;
+            document.getElementById("acc-address").innerText = data.address;
+            document.getElementById("acc-phone").innerText = data.phone;
+            document.getElementById("acc-balance").innerText = data.current_balance;
+        }
+
+    </script>
+</body>
+
+</html>

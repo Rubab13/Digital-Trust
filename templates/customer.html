@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ customer_data.name }}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/utils.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ customer_data.name }}</h1>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="{{ url_for('static', path = '/assets/' + customer_data.image) }}" alt="avatar"
+                                class="rounded-circle img-fluid"
+                                style="width: 150px; height: 150px; box-shadow: 0 0 0.2rem rgba(0,0,0,0.4);">
+                            <h5 class="my-3">{{ customer_data.name }}</h5>
+                            <p class="text-muted mb-1">{{ customer_data.account_number }}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-8">
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Account Number</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.account_number }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.name }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.email }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone Number</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.phone }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Age</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.age }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Current Balance</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.current_balance }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ customer_data.address }}</p>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link active btn" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">Transactions</button>
+                                </li>
+
+                                <!-- <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile" aria-selected="false">Bill Payment</button>
+                                </li> -->
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-third-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-third" type="button" role="tab"
+                                        aria-controls="pills-third" aria-selected="false">Account Management</button>
+                                </li>
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-fourth-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-fourth" type="button" role="tab"
+                                        aria-controls="pills-fourth" aria-selected="false">Cash Withdrawal</button>
+                                </li>
+
+                                <li class="nav-item mr-4" role="presentation">
+                                    <button class="nav-link btn" id="pills-fifth-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-fifth" type="button" role="tab"
+                                        aria-controls="pills-fifth" aria-selected="false">Cash Deposition</button>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent">
+
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+
+                                    {% if transaction_data %}
+                                    <div class="row mt-4">
+                                        <div class="col-md-8 offset-md-2">
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Index</th>
+                                                        <th scope="col">Sender Account Number</th>
+                                                        <th scope="col">Receiver Account Number</th>
+                                                        <th scope="col">Amount</th>
+                                                        <th scope="col">Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for user in transaction_data %}
+                                                    <tr>
+                                                        <th scope="row">{{ loop.index }}</th>
+                                                        <td>{{ user.sender_account_number }}</td>
+                                                        <td>{{ user.receiver_account_number }}</td>
+                                                        <td>{{ user.amount }}</td>
+                                                        <td>{{ user.date }}</td>
+
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                    {% else %}
+                                    <p class="mt-5 mb-5">No transanctions.</p>
+                                    {% endif %}
+
+
+                                </div>
+
+                                <!-- <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+                                    second Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa quae qui
+                                    repellendus
+                                    nemo iste magni officia blanditiis? Fugiat fugit, saepe culpa explicabo ipsa, quas
+                                    consequuntur optio vel sit, laudantium alias?
+                                </div> -->
+
+                                <div class="tab-pane fade" id="pills-third" role="tabpanel"
+                                    aria-labelledby="pills-third-tab">
+                                    <div class="row mt-5 mb-5">
+
+
+                                        <form class="col-md-12" method="post" action="/customer/update_customer_data"
+                                            onsubmit="return validate_customer_data()">
+                                            <div class="form-group row">
+                                                <label for="email_from_update_customer"
+                                                    class="col-sm-2 col-form-label">Enter new Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" class="form-control"
+                                                        id="email_from_update_customer" placeholder="Email"
+                                                        name="email_from_update_customer">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="phone_from_update_customer"
+                                                    class="col-sm-2 col-form-label">Enter new Phone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="tel" class="form-control"
+                                                        id="phone_from_update_customer" placeholder="Phone Number"
+                                                        name="phone_from_update_customer">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="address_from_update_customer"
+                                                    class="col-sm-2 col-form-label">Enter new Address</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"
+                                                        id="address_from_update_customer" placeholder="Address"
+                                                        name="address_from_update_customer">
+                                                </div>
+                                            </div>
+                                            <div class="row col-12 mt-5 ml-3">
+                                                <button type="submit" class="btn btn-outline-primary">Update</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="pills-fourth" role="tabpanel"
+                                    aria-labelledby="pills-fourth-tab">
+
+                                    <p class="mt-5 mb-5"><span class="rounded p-2 text-light bg-dark">Your current
+                                            balance is: {{ customer_data.current_balance }}</span></p>
+
+                                    {% if withdraw_flag %}
+                                    <script>
+                                        alert("Insufficient Balance.");
+                                    </script>
+                                    {% endif %}
+
+                                    <div class="row col-12">
+
+                                        <form class="col-12" id="withdraw-form" method="post" action="/customer/with"
+                                            onsubmit="return validate_withdraw_money()">
+
+                                            <div class="form-group row">
+                                                <label for="withdraw_amount" class="col-sm-3 col-form-label">Enter
+                                                    withdrawal amount: </label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="withdrawal_amount"
+                                                        name="withdraw_amount" placeholder="Amount" min="500">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="withdraw_password" class="col-sm-3 col-form-label">Enter
+                                                    your password: </label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="withdrawal_password"
+                                                        name="withdraw_password" placeholder="Password">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mt-5">
+                                                <div class="col-sm-10 d-flex justify-content-start pl-4">
+                                                    <button type="submit" class="btn btn-primary">Withdraw</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="tab-pane fade" id="pills-fifth" role="tabpanel"
+                                    aria-labelledby="pills-fifth-tab">
+
+                                    <p class="mt-5 mb-5"><span class="rounded p-2 text-light bg-dark">Your current
+                                            balance is: {{ customer_data.current_balance }}</span></p>
+
+                                    <div class="row col-12">
+
+                                        <form class="col-12" method="post" action="/customer/dep"
+                                            onsubmit="return validate_deposit_money()">
+
+
+                                            <div class="form-group row">
+                                                <label for="deposition_amount" class="col-sm-3 col-form-label">Enter
+                                                    Deposition Amount: </label>
+                                                <div class="col-sm-9">
+                                                    <input type="number" class="form-control" id="deposition_amount"
+                                                        name="deposition_amount" placeholder="Amount" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="deposit_password" class="col-sm-3 col-form-label">Enter Your
+                                                    Password: </label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="deposit_password"
+                                                        name="deposit_password" placeholder="Password" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mt-5">
+                                                <div class="col-sm-10 d-flex justify-content-start">
+                                                    <button type="submit" class="btn btn-primary">Deposit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="/customer-logout" class="btn btn-primary">Log Out</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        function validate_withdraw_money() {
+
+            var amount = document.getElementById("withdrawal_amount").value;
+            var password = document.getElementById("withdrawal_password").value;
+
+            amount = amount.trim();
+            password = password.trim()
+
+            if (amount !== "" && password !== "") {
+                if (parseInt(amount) <= 20000) {
+                    return true;
+                }
+                else {
+                    alert("The withdrawal amount limit is 20,000.");
+                    return false;
+                }
+            }
+            alert("The fields should be filled.");
+            return false;
+        }
+
+        function validate_deposit_money() {
+
+            var amount = document.getElementById("deposition_amount").value;
+            var password = document.getElementById("deposit_password").value;
+
+            amount = amount.trim();
+            password = password.trim()
+
+            if (amount !== "" && password !== "") {
+                return true;
+            }
+            alert("The fields should be filled.");
+            return false;
+        }
+
+        function validate_customer_data() {
+            var email = document.getElementById("email_from_update_customer").value.trim();
+            var phone = document.getElementById("phone_from_update_customer").value.trim();
+            var address = document.getElementById("address_from_update_customer").value.trim();
+
+            var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            var isEmailValid = true;
+            var isPhoneValid = true;
+
+            if (email === "" && phone === "" && address === "") {
+                alert("Please fill out at least one field.");
+                return false;
+            }
+
+            if (phone !== "" && !phoneRegex.test(phone)) {
+                alert("Please enter a valid phone number.");
+                isPhoneValid = false;
+            }
+
+            if (email !== "" && !emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                isEmailValid = false;
+            }
+
+            if (isEmailValid && isPhoneValid) {
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+    </script>
+
+
+</body>
+
+</html>

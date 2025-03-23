@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Sign In</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/customer_signin.css') }}">
+</head>
+
+<body>
+    <section class="ezy__signin2 d-flex">
+        <div class="container">
+            <div class="row justify-content-center h-100">
+                <div class="col-lg-6">
+                    <!-- <div class="ezy__signin2-bg-holder d-none d-lg-block h-100"
+                        style="background-image: url(https://img.freepik.com/free-vector/black-abstract-background_1393-348.jpg?w=900&t=st=1716578992~exp=1716579592~hmac=444688aff41d28614a7c2607c191aafea5e4035386dec335694a7e7cac92629e)">
+                    </div> -->
+                    <div class="ezy__signin2-bg-holder d-none d-lg-block h-100"
+                        style="background-image: url(https://img.freepik.com/free-vector/privacy-policy-concept-illustration_114360-7853.jpg?t=st=1717589394~exp=1717592994~hmac=c7d313d9820230424b2ac1bbfb5911b111ca1c5972cc47161a92c983ccbe3b37&w=900)">
+                    </div>
+                    
+
+                </div>
+                <div class="col-lg-5 py-5">
+                    <div class="row align-items-center h-100">
+                        <div class="col-12">
+                            <div class="card ezy__signin2-form-card">
+                                <div class="card-body p-0">
+                                    <h2 class="ezy__signin2-heading mb-4 mb-md-5">Customer Log In</h2>
+
+                                    <form method="POST" action="/customer/customer-signin" onsubmit="return validateForm()">
+                                        <div class="form-group mb-4 mt-2">
+                                            <label for="email" class="mb-2">Email Address</label>
+                                            <input type="text" class="form-control" id="email"
+                                                placeholder="Enter Email Address" name="email" />
+                                        </div>
+                                        <div class="form-group mb-5 mt-2">
+                                            <label for="password" class="mb-2">Password</label>
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Enter Password" name="password" />
+                                        </div>
+                                      
+                                        <button type="submit" class="btn ezy__signin2-btn-submit w-100">Log In</button>
+                                        <button class="btn w-100">Forget your password?</button>
+
+                                        <div class="text-center mt-4 mt-md-5">
+                                            <p class="mb-0 opacity-50 lh-1">Don't have an account?</p>
+                                            <a href="/customer-signup"
+                                                class="btn btn-link py-0 text-dark text-decoration-none">Create
+                                                account</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            if (email.trim() === '' || password.trim() === '') {
+                alert("Please enter both email and password.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

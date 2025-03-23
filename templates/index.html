@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Trust</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/utils.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/blog.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+
+        .heading {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .card1 {
+            position: relative;
+            width: 220px;
+            height: 320px;
+            /* background: mediumturquoise; */
+            background: #0e273c;
+            /* background: #000; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.4);
+        }
+
+        .card1::before,
+        .card1::after {
+            position: absolute;
+            content: "";
+            width: 20%;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+            /* background-color: lightblue; */
+            background-color: #fff;
+            transition: all 0.5s;
+        }
+
+        .card1::before {
+            top: 0;
+            right: 0;
+            border-radius: 0 15px 0 100%;
+        }
+
+        .card1::after {
+            bottom: 0;
+            left: 0;
+            border-radius: 0 100% 0 15px;
+        }
+
+        .card1:hover::before,
+        .card1:hover:after {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            transition: all 0.5s;
+        }
+
+        #manager-card:hover:after {
+            content: "Manager";
+        }
+
+        #customer-card:hover:after {
+            content: "Customer";
+        }
+
+
+
+
+
+
+
+        button {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            vertical-align: middle;
+            text-decoration: none;
+            background: transparent;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+        }
+
+        button.learn-more {
+            width: 12rem;
+            height: auto;
+        }
+
+        button.learn-more .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            /* background: #282936; */
+            background: #fff;
+            border-radius: 1.625rem;
+        }
+
+        button.learn-more .circle .icon {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            /* background: #fff; */
+            background: #000;
+            /* background: purple; */
+        }
+
+        button.learn-more .circle .icon.arrow {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+        }
+
+        button.learn-more .circle .icon.arrow::before {
+            position: absolute;
+            content: "";
+            top: -0.29rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid black;
+            border-right: 0.125rem solid black;
+            /* border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff; */
+            transform: rotate(45deg);
+        }
+
+        button.learn-more .button-text {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            /* color: #282936; */
+            color: white;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        button:hover .circle {
+            width: 100%;
+        }
+
+        button:hover .circle .icon.arrow {
+            /* background: #fff; */
+            background: black;
+            transform: translate(1rem, 0);
+        }
+
+        button:hover .button-text {
+            /* color: #fff; */
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="container col-xxl-8 px-4 py-5">
+
+
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6 p-2 rounded" style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.3);">
+
+                <img src="https://img.freepik.com/premium-photo/business-growth-concept_173387-1062.jpg?"
+                    class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500"
+                    loading="lazy">
+
+
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3 heading">Welcome to Digital Trust</h1>
+                <p class="lead mb-4 mt-4 pr-3">
+                    Manage Your Money Anytime, Anywhere. <br>Join Us Today for Easy, Secure Online Banking.
+                    Your gateway to seamless online banking. Explore our innovative features and experience banking like
+                    never before.
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    
+
+                    <button class="learn-more" id="signupbutton">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">Sign Up</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="pt-5 pb-5 d-flex justify-content-center position-relative"
+        style="background-image: url('https://img.freepik.com/premium-photo/business-growth-concept_173387-1062.jpg?');height: 100vh;background-repeat: no-repeat;background-position: center;background-size: cover;">
+
+        <div style="position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;">
+
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                <h1 class="display-5 fw-bold lh-1 mb-3 heading">Welcome to Digital Trust</h1>
+                <p class="lead mb-4 mt-4 pr-3 text-center">
+                    Manage Your Money Anytime, Anywhere. <br>Join Us Today for Easy, Secure Online Banking.
+                    Your gateway to seamless online banking. Explore our innovative features and experience banking
+                    like
+                    never before.
+                </p>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button class="learn-more" id="signupbutton">
+                        <span class="circle" aria-hidden="true">
+                            <span class="icon arrow"></span>
+                        </span>
+                        <span class="button-text">Sign Up</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="display-5 fw-bold lh-1 mb-3 heading">Welcome to Digital Trust</h1>
+            <p class="lead mb-4 mt-4 pr-3 text-center">
+                Manage Your Money Anytime, Anywhere. <br>Join Us Today for Easy, Secure Online Banking.
+                Your gateway to seamless online banking. Explore our innovative features and experience banking
+                like
+                never before.
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button class="learn-more" id="signupbutton">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Sign Up</span>
+                </button>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="container col-xxl-8 px-4 py-5 bg-danger">
+
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6 p-2 rounded" style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.3);">
+
+                    <img src="https://img.freepik.com/premium-photo/business-growth-concept_173387-1062.jpg?"
+                        class="d-block mx-lg-auto img-fluid rounded" alt="Bootstrap Themes" width="700" height="500"
+                        loading="lazy">
+
+
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold lh-1 mb-3 heading">Welcome to Digital Trust</h1>
+                    <p class="lead mb-4 mt-4 pr-3">
+                        Manage Your Money Anytime, Anywhere. <br>Join Us Today for Easy, Secure Online Banking.
+                        Your gateway to seamless online banking. Explore our innovative features and experience banking
+                        like
+                        never before.
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn2 btn-lg px-4 me-md-2 mr-3" style="width: 250px;">Sign Up</button>
+
+                         <a href="/customer-signup" class="btn btn2 btn-lg px-4 me-md-2 mr-3">Sign Up</a> 
+
+                        <button class="learn-more" id="signupbutton">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Sign Up</span>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <section class="testimonial pt-5 pb-5">
+        <div class="container pt-5 pb-5">
+
+            <div class="row text-center justify-content-center">
+
+
+                <div class="card1 ml-3 mr-3 d-flex flex-column" id="manager-card">
+                    <i class="fa-solid fa-user-tie d-flex align-items-center justify-content-center"
+                        style="width:150px;height:150px;font-size: 120px; color: #fff;"></i>
+                    <div class="testimonial-content mt-3">
+                        <h4 class="mb-1" style="color: white;" id="get_name1">Manager</h4>
+                    </div>
+                </div>
+
+                <div class="card1 ml-3 mr-3 d-flex flex-column" id="customer-card">
+                    <!-- <i class="fa-solid fa-users" style="width:120px;font-size: 120px;"></i> -->
+                    <i class='bx bxs-user' style="width:150px;font-size: 150px;color: #fff;"></i>
+                    <div class="testimonial-content mt-3">
+                        <h4 class="mb-1" id="get_name1" style="color: white;">Customer</h4>
+                    </div>
+                </div>
+
+
+                <!-- <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-item p-4 py-lg-5 mt-4" style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.4);">
+                        <i class="fa-solid fa-user-tie" style="width:120px;font-size: 120px;"></i>
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1" id="get_name1">Manager</h4>
+                            <a href="/manager-signin" class="btn btn1 mt-md-4"
+                                style="box-shadow: 0 0 0.2rem rgba(0,0,255,0.3);">Enter<a></a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-item p-4 py-lg-5 mt-4" style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.4);">
+
+                        <i class="fa-solid fa-user" style="width:120px;font-size: 120px;"></i>
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1" id="get_name1">Employee</h4>
+                            <a href="/employee-signin" class="btn1 btn mt-md-4">Enter<a></a>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-item p-4 py-lg-5 mt-4" style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.4);">
+                        <div class="row" style="padding-left: 90px;">
+                            <i class="fa-solid fa-users" style="width:120px;font-size: 120px;"></i>
+                        </div>
+
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1" id="get_name1">Customer</h4>
+                            <a href="/customer-signin" class="btn1 btn mt-md-4"
+                                style="box-shadow: 0 0 0.2rem rgba(0,0,255,0.3);">Enter<a></a>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- incentives -->
+    <section class="incentives">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12">
+                    <h1 class="incentives-heading text-center mb-5 heading">We build the best Business for you.</h1>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 mt-4">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="incentives-icon">
+                            <i class="fa-solid fa-money-bill-transfer" style="color: #0e273c;"></i>
+                        </div>
+                        <div class="ms-3 mt-2">
+                            <h5 class="mb-1 fs-4">Seamless Transactions</h5>
+                            <p class="mb-0">Effortless Banking Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 mt-4">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="incentives-icon">
+                            <i class="fas fa-headphones-alt" style="color: #0e273c;"></i>
+                        </div>
+                        <div class="ms-3 mt-2">
+                            <h5 class="mb-1 fs-4">24/7 Support</h5>
+                            <p class="mb-0">No charge on 24/7 support</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 mt-4">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="incentives-icon">
+                            <i class="fa-solid fa-shield" style="color: #0e273c;"></i>
+                        </div>
+                        <div class="ms-3 mt-2">
+                            <h5 class="mb-1 fs-4">Enhanced Security</h5>
+                            <p class="mb-0">Full time financial protection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- incentives end -->
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container justify-content-center d-flex flex-column align-items-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <h2 class="blog-heading mb-3 mt-0 heading">Celebrate Financial Literacy</h2>
+                    <p class="blog-sub-heading px-lg-5 mb-4">
+                        Stay Informed: Explore Insights & Tips in Our Blog
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-items-center mt-5">
+                {% if blogs %}
+
+                <div class="col-12 mb-4">
+                    <article class="blog-featured-post">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+
+                                <img src="{{ url_for('static', path = '/assets/' + blogs[0].image_url) }}"
+                                    class="img-fluid rounded" style="box-shadow: 0 0 0.2rem rgba(0,0,0,0.4);">
+
+                                <!-- <img src="https://cdn.easyfrontend.com/pictures/blog/blog_4.jpg" alt="" 
+                                    class="img-fluid rounded-3" />-->
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="mt-4 mt-lg-0 ps-lg-4">
+                                    <h4 class="blog-title mb-2">
+                                        {{ blogs[0].title }}
+                                    </h4>
+                                    <p class="blog-description mt-3 mb-4">
+                                        {{ blogs[0].description }}
+                                    </p>
+                                    <div class="blog-author d-flex align-items-center mb-2">
+                                        <div>
+                                            <p class="mb-0">By<b> {{ blogs[0].writer }}</b></p>
+                                            <p class="mb-0 small opacity-75">{{ blogs[0].date }}</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <a href="/blog_details{{ blogs[0].title }}" class="btn blog-btn-read-more">Read
+                                            More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                {% for blog in blogs[1:] %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="blog-post rounded overflow-hidden mt-4 h-100">
+                        <!-- <img src="https://cdn.easyfrontend.com/pictures/blog/blog_14_3.jpg" alt=""
+                            class="img-fluid w-100" /> -->
+
+                        <img src="{{ url_for('static', path = '/assets/' + blog.image_url) }}" class="img-fluid w-100"
+                            style="box-shadow: 0 0 0.2rem rgba(0,0,0,0.4);">
+
+
+                        <div class="p-3 p-lg-4">
+                            <!-- <h4 class="blog-title fs-4 mb-1">Not Your Regular Home Decoration?</h4> -->
+                            <h4 class="blog-title fs-4 mb-1">{{ blog.title }}</h4>
+                            <p class="blog-author">
+                                <span class="me-2 mr-4">By <span class="text-primary">{{ blog.writer }} </span></span>
+                                <span class="ml-5"><i class="far fa-clock me-1"></i> <span>{{ blog.date }}</span></span>
+                            </p>
+                            <p class="blog-description mt-3 mb-4">
+                                {{ blog.description }}
+                            </p>
+                            <a href="/blog_details{{ blog.title }}" class="btn blog-btn-read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+
+                <!-- <div class="col-12 col-md-6 col-lg-4 bg-warning">
+                    <article class="blog-post rounded overflow-hidden mt-4 h-100">
+                        <img src="https://cdn.easyfrontend.com/pictures/blog/blog_14_3.jpg" alt=""
+                            class="img-fluid w-100" />
+                        <div class="p-3 p-lg-4">
+                            <h4 class="blog-title fs-4 mb-1">Not Your Regular Home Decoration?</h4>
+                            <p class="blog-author">
+                                <span class="me-2">By <a href="" class="text-decoration-none">Maisha Adiba</a></span>
+                                <span><i class="far fa-clock me-1"></i> <span>21 Jun, 2022</span></span>
+                            </p>
+                            <p class="blog-description mt-3 mb-4">
+                                Urna molestie at eleme ntum eu facilisis sed odio Male suada fames.
+                            </p>
+                            <a href="" class="btn blog-btn-read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="blog-post rounded overflow-hidden mt-4 h-100">
+                        <img src="https://cdn.easyfrontend.com/pictures/blog/blog_14_1.jpg" alt=""
+                            class="img-fluid w-100" />
+                        <div class="p-3 p-lg-4">
+                            <h4 class="blog-title fs-4 mb-1">How I’m Styling Everyday Black Outfits</h4>
+                            <p class="blog-author">
+                                <span class="me-2">By <a href="" class="text-decoration-none">Alex Hales</a></span>
+                                <span><i class="far fa-clock me-1"></i> <span>21 Jun, 2022</span></span>
+                            </p>
+                            <p class="blog-description mt-3 mb-4">
+                                It’s no secret that the digital industry is booming. From exciting startups to global
+                                brands.
+                            </p>
+                            <a href="" class="btn blog-btn-read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="blog-post rounded overflow-hidden mt-4 h-100">
+                        <img src="https://cdn.easyfrontend.com/pictures/blog/blog_13_3.jpg" alt=""
+                            class="img-fluid w-100" />
+                        <div class="p-3 p-lg-4">
+                            <h4 class="blog-title fs-4 mb-1">Fashion Essentials All Men Should Know</h4>
+                            <p class="blog-author">
+                                <span class="me-2">By <a href="" class="text-decoration-none">John Stokes</a></span>
+                                <span><i class="far fa-clock me-1"></i> <span>11 Mar, 2022</span></span>
+                            </p>
+                            <p class="blog-description mt-3 mb-4">
+                                More off this less hello salamander lied porpoise much over tightly circa horse taped.
+                            </p>
+                            <a href="" class="btn ezy__blog4-btn-read-more">Read More</a>
+                        </div>
+                    </article>
+                </div> -->
+
+                {% endif %}
+
+            </div>
+
+            <div class="row col-12 d-flex mt-5 justify-content-center align-items-center">
+                <a href="/blogs" class="btn btn2" style="padding: 12px 20px;font-size: 1.3rem;">All Posts</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Community Reviews and Testimonials Section -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="row justify-content-center mb-4 mb-md-5">
+                <div class="col-lg-6 col-xl-5 text-center">
+                    <h2 class="testimonial-heading mb-3 heading">Community Reviews</h2>
+                    <p class="testimonial-sub-heading mb-0">
+                        From there give dominion, lights doesn't good all rule let open,
+                        appear our beast second bearing.
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center">
+
+                {% for review in reviews %}
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-item p-4 py-lg-5 mt-4" style="box-shadow: 0 0 0.2rem rgba(0,0,0,0.4);">
+
+                        <img src="{{ url_for('static', path = '/assets/' + review.image) }}" alt=""
+                            class="img-fluid rounded-circle" width="120"
+                            style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.4);" />
+
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1 heading" id="get_name1">{{ review.name }}</h4>
+                            <p class="mb-4 testimonial-rating">
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star"></span>
+                                <span class="fas fa-star-half-alt active"></span>
+                            </p>
+                            <p class="opacity-50 mb-0" id="get_review1">
+                                {{ review.review }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+
+                <!-- <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-item active p-4 py-lg-5 mt-4">
+                        <img src="https://cdn.easyfrontend.com/pictures/users/user8.jpg" alt=""
+                            class="img-fluid rounded-circle" width="120" />
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1" id="get_name2">Raima Ray</h4>
+                            <p class="mb-4 testimonial-rating">
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star-half-alt active"></span>
+                                <span class="fas fa-star"></span>
+                            </p>
+                            <p class="opacity-50 mb-0" id="get_review2">
+                                Shall deep bearing divide seed moved replenish us, good our
+                                open he seed day which .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="ezy__testimonial5-item p-4 py-lg-5 mt-4">
+                        <img src="https://cdn.easyfrontend.com/pictures/users/user18.jpg" alt=""
+                            class="img-fluid rounded-circle" width="120" />
+                        <div class="testimonial-content mt-3">
+                            <h4 class="mb-1" id="get_name3">Arjun Kapur</h4>
+                            <p class="mb-4 testimonial-rating">
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star active"></span>
+                                <span class="fas fa-star-half-alt active"></span>
+                                <span class="fas fa-star"></span>
+                            </p>
+                            <p class="opacity-50 mb-0" id="get_review3">
+                                It’s easier to reach your savings goals when you have the
+                                right savings account. Take a look and find the right one for
+                                you.
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Community Reviews and Testimonials Section End -->
+
+    <!-- WORK ON THIS SECTION -->
+    <!-- Contact Us Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-lg-7 order-lg-2 mb-3 mb-lg-0">
+
+                    <div class="contact-bg-holder h-100" style="background-image: url(../static/assets/contactUs.jpg)">
+                    </div>
+
+                </div>
+                <div class="col-lg-5">
+                    <div class="card contact-form-card">
+                        <div class="card-body p-md-5">
+                            <h2 class="contact-heading mb-3 heading">Contact Us</h2>
+                            <p class="contact-sub-heading mb-5">We list your menu online, help you process
+                                orders.</p>
+
+                            <form>
+                                <div class="form-group mb-3 mt-2">
+                                    <input type="text" class="form-control" placeholder="Enter Name"
+                                        style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.3);" />
+                                </div>
+                                <div class="form-group mb-3 mt-2">
+                                    <input type="email" class="form-control" placeholder="Enter Email"
+                                        style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.3);" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <textarea name="message" class="form-control" placeholder="Enter Message" rows="3"
+                                        style="box-shadow: 0 0 0.3rem rgba(0,0,0,0.3);"></textarea>
+                                </div>
+                                <div class="text-end">
+                                    <a href="/submit_faq" class="btn btn2">Submit</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Us Section End -->
+
+    <!-- FAQs Section -->
+    <section class="faq mb-5 mt-5 pt-5 pb-5" style="background-color: #eee;">
+        <div class="container">
+
+            <div class="row justify-content-center mb-md-4">
+                <div class="col-lg-8 col-xl-7 text-center">
+                    <h2 class="contact-heading mb-3 heading">Frequently Asked Questions</h2>
+                    <p class="faq-sub-heading mb-0">
+                        Looking for more details?<br>Explore our Knowledge Base for comprehensive answers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    {% for faq in faqs[:2] %}
+                    <div class="faq-item mt-4 glowing-box p-sm-4 p-lg-1" style="background-color: white">
+                        <h5
+                            class="p-3 p-lg-4 mb-0 w-100 text-start d-flex justify-content-between align-items-center faq-btn-collapse font-weight-bold">
+                            <span>{{ faq.question }}</span>
+                        </h5>
+                        <div class="faq-content px-3 px-lg-4 pb-lg-4">
+                            <p class="opacity-50 mb-0 text-justify">
+                                {{ faq.answer }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="col-md-6">
+                    {% for faq in faqs[2:] %}
+                    <div class="faq-item mt-4 glowing-box p-sm-4 p-lg-1" style="background-color: white">
+                        <h5
+                            class="p-3 p-lg-4 mb-0 w-100 text-start d-flex justify-content-between align-items-center faq-btn-collapse font-weight-bold">
+                            <span>{{ faq.question }}</span>
+                        </h5>
+                        <div class="faq-content px-3 px-lg-4 pb-lg-4">
+                            <p class="opacity-50 mb-0 text-justify">
+                                {{ faq.answer }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer">
+        <div class="container">
+            <div class="row text-center text-sm-start">
+                <div class="col-lg-3">
+                    <h2 class="fw-bold heading">Digital Trust</h2>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5>Quick Links</h5>
+
+                    <!-- put links here -->
+                    <ul class="nav flex-column footer-quick-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5>Social Media</h5>
+                    <ul class="nav flex-column footer-quick-links">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5>Job Info</h5>
+                    <ul class="nav flex-column footer-quick-links">
+                        <li><a href="#">Select</a></li>
+                        <li><a href="#">Service</a></li>
+                        <li><a href="#">Payment</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-3 mt-4 mt-lg-0">
+                    <h5>Contact Us</h5>
+                    <ul class="nav flex-column footer-quick-links">
+                        <li><a href="#">Islamabad, Pakistan</a></li>
+                        <li><a href="#">contact@bankName.com</a></li>
+                        <li><a href="#">+92 334 8748787</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="row d-flex justify-content-between align-items-center text-center text-lg-start">
+                <div class="col-lg-4">
+                    <p class="mb-0 mt-1">Copyright &copy;&nbsp; Bank Name, All rights reserved</p>
+                </div>
+
+                <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end text-center text-lg-end mt-1">
+                    <ul class="footer-social nav">
+                        <li>
+                            <a href="" class="border d-flex justify-content-center align-items-center rounded-circle"><i
+                                    class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="" class="border d-flex justify-content-center align-items-center rounded-circle"><i
+                                    class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="" class="border d-flex justify-content-center align-items-center rounded-circle"><i
+                                    class="fab fa-pinterest-p"></i></a>
+                        </li>
+                        <li>
+                            <a href="" class="border d-flex justify-content-center align-items-center rounded-circle"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <script>
+        document.getElementById('manager-card').addEventListener('click', function () {
+            window.location.href = 'manager/manager-signin';
+        });
+        document.getElementById('customer-card').addEventListener('click', function () {
+            window.location.href = 'customer/customer-signin';
+        });
+        document.getElementById('signupbutton').addEventListener('click', function () {
+            window.location.href = 'customer/customer-signup';
+        });
+    </script>
+
+</body>
+
+</html>

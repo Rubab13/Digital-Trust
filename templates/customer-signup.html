@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Sign Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/utils.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/customer-signup.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <section class="ezy__signup2 d-flex">
+        <div class="container">
+            <div class="row justify-content-between h-100">
+                <div class="col-lg-6">
+                    <!-- <div class="ezy__signup2-bg-holder d-none d-lg-block h-100"
+                        style="background-image: url(https://img.freepik.com/free-vector/black-abstract-background_1393-348.jpg?w=900&t=st=1716578992~exp=1716579592~hmac=444688aff41d28614a7c2607c191aafea5e4035386dec335694a7e7cac92629e)">
+                    </div> -->
+                    <div class="ezy__signup2-bg-holder d-none d-lg-block h-100"
+                        style="background-image: url(../static/assets/customer-signup.jpg)">                        
+                    </div>
+                </div>
+                <div class="col-lg-5 py-5">
+                    <div class="row align-items-center h-100">
+                        <div class="col-12">
+                            <div class="card ezy__signup2-form-card">
+                                <div class="card-body p-0">
+                                    <h2 class="ezy__signup2-heading mb-4 mb-md-5">Customer Sign Up</h2>
+
+                                    <!-- <form method="post" action="/customer-signup" onsubmit="validate()"> -->
+
+                                    <form method="post" action="/customer-signup" onsubmit="return validate()">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="first_name" class="mb-2">First Name</label>
+                                                    <input type="text" class="form-control" id="first_name"
+                                                        placeholder="Your First Name" name="first_name" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="last_name" class="mb-2">Last Name</label>
+                                                    <input type="text" class="form-control" id="last_name"
+                                                        placeholder="Your Last Name" name="last_name" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group mb-4">
+                                                    <label for="date" class="mb-2">Birth date</label>
+
+                                                    <div class="input-group d-flex justify-content-between">
+                                                        <select name="day" type="day" class="form-select col-lg-3">
+                                                            <option value="">Day</option>
+                                                            {% for day in range(1, 32) %}
+                                                            <option value="{{ day }}">{{ day }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    
+                                                        <select name="month" type="month" class="form-select col-lg-3">
+                                                            <option value="">Month</option>
+                                                            <option value="1">January</option>
+                                                            <option value="2">February</option>
+                                                            <option value="3">March</option>
+                                                            <option value="4">April</option>
+                                                            <option value="5">May</option>
+                                                            <option value="6">June</option>
+                                                            <option value="7">July</option>
+                                                            <option value="8">August</option>
+                                                            <option value="9">September</option>
+                                                            <option value="10">October</option>
+                                                            <option value="11">November</option>
+                                                            <option value="12">December</option>
+                                                        </select>
+                                                    
+                                                        <select name="year" type="year" class="form-select col-lg-3">
+                                                            <option value="">Year</option>
+                                                            {% for year in range(1970, 2006) %}
+                                                            <option value="{{ year }}">{{ year }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                    
+
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12">
+                                                <div class="form-group mb-4">
+                                                    <label for="email" class="mb-2">Email</label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        placeholder="Your Email Address" name="email" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group mb-4">
+                                                    <label for="phone" class="mb-2">Phone</label>
+                                                    <input type="phone" class="form-control" id="phone"
+                                                        placeholder="Your Phone Number" name="phone" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group mb-4">
+                                                    <label for="address" class="mb-2">Address</label>
+                                                    <textarea name="address" id="address" class="form-control"
+                                                        placeholder="Your Address"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="password" class="mb-2">Password</label>
+                                                    <input type="password" class="form-control" id="password"
+                                                        placeholder="Enter Password" name="password"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group mb-4">
+                                                    <label for="confirm_password" class="mb-2">Confirm Password</label>
+                                                    <input type="password" class="form-control" id="confirm_password"
+                                                        placeholder="Confirm Password" name="confirm_password"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <button type="submit" class="btn ezy__signup2-btn-submit w-100">Sign Up</button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        function validate() {
+
+            const firstName = document.getElementById('first_name').value.trim();
+            const lastName = document.getElementById('last_name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirm_password = document.getElementById('confirm_password').value.trim();
+
+
+
+            var phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            var passwordRegex = /^(?=.*\d).{8,}$/;
+
+
+
+            if (firstName !== "" && lastName !== "" && email !== "" && phone !== "" && address !== "" && password !== "" && confirm_password !== "") {
+                if (email.match(emailRegex) && phone.match(phoneRegex) && password.match(passwordRegex)) {
+
+                    if (password === confirm_password) {
+                        return true;
+                    }
+                    else {
+                        alert("Passwords do not match in both the password.");
+                        return false;   
+                    }
+                
+                }
+                else {
+                    alert("Please fill out according to the required pattern.");
+                    return false;
+                }
+            }
+
+            else {
+                alert("Please fill out all the fields.");
+                return false;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

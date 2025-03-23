@@ -1,0 +1,61 @@
+html {
+    scroll-behavior: smooth;
+  }
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0e273c;
+}
+
+ul li a{
+    color: black;
+}
+
+.btn1 {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 6px;
+    width: 150px;
+    margin-right: 10px;
+}
+
+.btn2 {
+    width: 150px;
+    border: 1px solid #0e273c;
+    background-color: #0e273c;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.btn1:hover {
+    background-color: #0e273c;
+    transition: 0.5s;
+    color: #fff;
+    border: 1px solid #0e273c;
+}
+
+.btn2:hover {
+    background-color: #fff;
+    transition: 0.5s;
+    border: 1px solid #0e273c;
+    color: #0e273c;
+}
+
+textarea {
+    resize: none;
+}
+
+
+
+.glowing-box {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+ 
